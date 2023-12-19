@@ -11,6 +11,8 @@
 					<x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
 					<x-input-error :messages="$errors->get('first_name')" class="mt-2" />
 					<x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+					<x-input-error :messages="$errors->get('phone')" class="mt-2" />
+					<x-input-error :messages="$errors->get('egn')" class="mt-2" />
 
 					<!-- Email/pass -->
 					<div class="form-group">

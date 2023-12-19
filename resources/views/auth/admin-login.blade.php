@@ -3,6 +3,10 @@
 @section('content')
 	<section class="content-wrap h-100 container">
 		<div class="card card-login bg-info mx-auto p-3 shadow">
+			<div class="alert alert-warning" role="alert">
+				Вход САМО за доктори!
+			</div>
+
 			<form method="POST" action="{{ route('login') }}">
 				@csrf
 				<x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -28,11 +32,10 @@
 					<a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
 						href="{{ route('password.request') }}">Забравена парола</a>
 				@endif
-				{{-- <p>
+				<p>
 					<a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-						href="{{ route('doctors.index') }}">Вход
-						за доктори</a>
-				</p> --}}
+						href="admin-login.html">Вход за доктори</a>
+				</p>
 			</form>
 		</div>
 	</section>

@@ -13,16 +13,41 @@
 						<a href="/" class="nav-link text-light fs-5">Начало</a>
 					</li>
 					<li class="nav-item px-2 text-white">
-						<a href="appointments.html" class="nav-link text-light fs-5">Часове</a>
+						<a href="{{ route('appointments.index') }}" class="nav-link text-light fs-5">Часове</a>
 					</li>
 					<li class="nav-item px-2 text-white">
-						<a href="contact.html" class="nav-link text-light fs-5">Контакти</a>
+						<a href="{{ route('contact') }}" class="nav-link text-light fs-5">Контакти</a>
 					</li>
+
+
 					@if (Route::has('login'))
 						@auth
-							<li class="nav-item p-2">
-								<a href="{{ route('profile') }}" class="btn btn-primary">Профил</a>
+							@if (Auth::user()->isAdmin == 1)
+								<li class="nav-item px-2 text-white">
+									<a href="{{ route('admin') }}" class="nav-link text-light fs-5">Админ</a>
+								</li>
+							@endif
+							<li class="nav-item px-2 text-white">
+								@if (Auth::user()->isAdmin == 1)
+									<a href="{{ route('profile.edit') }}" class="nav-link text-light fs-5">
+										{{-- <a href="{{ route('admin-profile.edit') }}" class="nav-link text-light fs-5"> --}}
+										<span>Д-р</span>
+									@else
+										<a href="{{ route('profile.edit') }}" class="nav-link text-light fs-5">
+								@endif
+								<span class="mb-0">{{ Auth::user()->first_name }}</span>
+								<span class="mb-0">{{ Auth::user()->last_name }}</span>
+								</a>
 							</li>
+							<li class="nav-item px-2 text-white">
+								<a href="{{ route('logout') }}" class="btn btn-primary"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+									Излизане
+								</a>
+							</li>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
 						@else
 							<li class="nav-item p-2">
 								<a href="{{ route('login') }}" class="btn btn-primary">Вход</a>

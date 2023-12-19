@@ -134,4 +134,122 @@
 			</div>
 		</div>
 	</section>
+
+	<section class="admin-content d-flex">
+		<div class="row w-100 m-0">
+			<!--Начало на вертикалното меню-->
+			<div class="vert-nav col-12 col-xl-2 z-2 bg-info-subtle px-xxl-3 px-2 py-3">
+				<ul class="nav row g-2">
+					<li class="nav-item col-xl-12 col-auto">
+						<a class="d-flex align-items-center p-lg-3 bg-primary-subtle border-primary flex-wrap rounded border p-2 shadow"
+							href="admin.html">
+							<span class="d-block bg-primary me-2 rounded px-2 py-1 text-white">
+								<i class="bi bi-calendar-check-fill"></i>
+							</span>
+							<span>Appointments</span>
+						</a>
+					</li>
+
+					<li class="nav-item col-xl-12 col-auto">
+						<a class="d-flex align-items-center p-lg-3 bg-primary-subtle border-primary flex-wrap rounded border p-2 shadow"
+							href="admin-profile.html">
+							<span class="d-block bg-primary me-2 rounded px-2 py-1 text-white">
+								<i class="bi bi-person-fill"></i>
+							</span>
+							<span>Profile</span>
+						</a>
+					</li>
+					<li class="nav-item col-xl-12 col-auto">
+						<a class="d-flex align-items-center p-lg-3 bg-primary-subtle border-primary flex-wrap rounded border p-2 shadow"
+							href="home.html">
+							<span class="d-block bg-primary me-2 rounded px-2 py-1 text-white">
+								<i class="bi bi-box-arrow-right"></i>
+							</span>
+							<span>Log out</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!--Край на вертикалното меню-->
+
+			<!--Начало на съдържанието-->
+			<div class="col-xl-10 admin-content-page min-h-100 m-0 p-4">
+				<div class="container">
+					<div class="row pt-lg-5">
+						<div class="col-md-6">
+							<img class="col-4 d-block mx-auto rounded" src="img/icon/doc_male.png" />
+
+							<div class="adm-profile">
+								<div>
+									<h3>
+										<strong> Д-р Иван Марчев </strong>
+									</h3>
+								</div>
+								<hr class="col-5 mx-auto" />
+								<div>
+									<p><strong>Email: </strong>marchev@doctor.com</p>
+								</div>
+								<div>
+									<p><strong>Phone: </strong>+359 897 052 058</p>
+								</div>
+								<div>
+									<p><strong>ID: </strong> 4</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 rounded-lg py-3 shadow-lg">
+							<h5>Обновяване на данни</h5>
+							<div class="alert alert-danger" role="alert">
+								Паролите не съвпадат!
+							</div>
+							<div class="alert alert-danger" role="alert">
+								Грешна парола!
+							</div>
+
+							<div class="alert alert-success" role="alert">
+								Данните са обновени!
+							</div>
+
+							<form action="" method="POST">
+								<div class="form-group pb-3">
+									<label for="inputEmail4">Email</label>
+									<input type="email" name="email" value="marchev@doctor.com" class="form-control" id="inputEmail4" />
+								</div>
+								<div class="row">
+									<div class="form-group col-md-6 pb-3">
+										<label for="inputfname4">Име и фамилия</label>
+										<input type="text" name="name" value="Д-р Иван Марчев" class="form-control" id="inputfname4" />
+									</div>
+									<div class="form-group col-md-6 pb-3">
+										<label for="inputPhone">Телефон</label>
+										<input type="text" name="phone" value="+359 897 052 058" class="form-control" id="inputPhone" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-6 pb-3">
+										<label for="inputPassword">Парола</label>
+										<input type="password" name="admin_password" class="form-control" id="inputPassword" required />
+									</div>
+									<div class="form-group col-md-6 pb-3">
+										<label for="inputPassword">Повтори Паролата</label>
+										<input type="password" name="admin_password2" class="form-control" id="inputPassword1" required />
+									</div>
+									<div class="form-group col-md-6 pb-3">
+										<label for="inputPassword">Нова парола</label>
+										<input type="password" name="new_password" class="form-control" id="inputPassword2" />
+									</div>
+								</div>
+
+								<button type="submit" name="submit" class="btn btn-primary">
+									Обновяване
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!--Край на съдържанието-->
+			</div>
+		</div>
+	</section>
 @endsection

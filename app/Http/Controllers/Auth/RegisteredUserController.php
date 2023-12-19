@@ -30,32 +30,34 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
         $validatedData = $request->validate([
-            'first_name' => ['string', 'max:255'],
-            'last_name' => ['string', 'max:255'],
-            'email' => ['string', 'lowercase', 'email', 'max:255'],
-            'password' => ['confirmed', Rules\Password::defaults()],
-            'phone' => ['string', 'max:255'],
-            'address' => ['string', 'max:255'],
-            'blood_group' => ['string', 'max:255'],
-            'egn' => ['string', 'max:255'],
-            'city' => ['string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['required', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'blood_group' => ['nullable', 'string', 'max:255'],
+            'egn' => ['required', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
         ]);
 
-        dd($validatedData);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $userByEmail = User::where('email', $validatedData['email'])->first();
+        $userByEgn = User::where('egn', $validatedData['egn'])->first();
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'blood_group' => $request->blood_group,
-            'egn' => $request->egn,
-            'city' => $request->city,
-        ]);
+        if ($userByEmail || $userByEgn) {
+            $errors = [];
+            if ($userByEmail) {
+                $errors['email'] = 'The provided email is already in use.';
+            }
+            if ($userByEgn) {
+                $errors['egn'] = 'The provided EGN is already in use.';
+            }
+            return redirect()->back()->withErrors($errors);
+        }
+
+        $user = User::create($validatedData);
 
         event(new Registered($user));
 
